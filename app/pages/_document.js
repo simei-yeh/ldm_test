@@ -13,7 +13,7 @@ class MainDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <div id='modal-container'></div>
+            <div id='modal-overlay'></div>
         </body>
       </Html>
     );
