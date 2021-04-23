@@ -1,8 +1,19 @@
-.close, .forward, .backward  {
-  color: gray;
-  border: 1px solid black;
+.button  {
+  color: white;
+  background-color: steelblue;
+  border: 1px solid gray;
   padding: 0.2em;
   border-radius: 5px;
+  transition: 0.2s all ease;
+}
+
+.button:hover  {
+  cursor: pointer;
+}
+
+.button:active  {
+  color: steelblue;
+  background-color: white;
 }
 
 .close {
