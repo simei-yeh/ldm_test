@@ -1,0 +1,14 @@
+.close, .forward, .backward  {
+  color: gray;
+  border: 1px solid black;
+  padding: 0.2em;
+  border-radius: 5px;
+}
+
+.close {
+  font-size: 0.8em;
+}
+
+.forward, .backward  {
+  font-size: 1em;
+}

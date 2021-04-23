@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import styles from './button.module.css';
 
-const Button = ({ show, onClose, children, title }) => {
+const Button = ({ show, onClose, children, title, name, id, callback }) => {
   return (
-    <button>
-      Close
-    </button>
+    <span onClick={callback}
+      className={styles[id]}>
+      {name}
+    </span>
   )
 };
 
