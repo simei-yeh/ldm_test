@@ -7,12 +7,11 @@ export default function Home() {
 
   return (
     <div>
-        <button onClick={() => setShowModal(true)}>Open Modal</button>
+        <div onClick={() => setShowModal(true)}>Enter a new fund</div>
         <Modal
           onClose={() => setShowModal(false)}
           show={showModal}
         >
-          Hello from the modal!
         </Modal>
     </div>
   )
