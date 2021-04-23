@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Modal from '../components/modal/modals.js'
+import Modals from '../components/modal/modals.js'
 import React, { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
@@ -8,11 +8,11 @@ export default function Home() {
   return (
     <div>
         <div onClick={() => setShowModal(true)}>Enter a new fund</div>
-        <Modal
+        <Modals
           onClose={() => setShowModal(false)}
           show={showModal}
         >
-        </Modal>
+        </Modals>
     </div>
   )
 }
