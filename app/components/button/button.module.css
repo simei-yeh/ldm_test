@@ -5,6 +5,7 @@
   padding: 0.2em;
   border-radius: 5px;
   transition: 0.2s all ease;
+  font-size: 1em;
 }
 
 .button:hover  {
@@ -20,6 +21,11 @@
   font-size: 0.8em;
 }
 
-.forward, .backward  {
-  font-size: 1em;
+.forward, .backward {
+  position: absolute;
+  bottom: 0;
+}
+
+.forward {
+  right: 0;
 }
