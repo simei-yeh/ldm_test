@@ -13,7 +13,6 @@ class MainDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          {/*Below we add the modal wrapper*/}
           <div id='modal-container'></div>
         </body>
       </Html>
