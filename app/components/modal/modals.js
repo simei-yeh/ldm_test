@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './modals.module.css';
+import Carousel from '../carousel/carousel.js';
+import Button from '../button/button.js';
 
 const Modals = ({ show, onClose, children, title }) => {
   const [isBrowser, setIsBrowser] = useState(false);
@@ -18,11 +20,16 @@ const Modals = ({ show, onClose, children, title }) => {
     <div className={styles['modal']}>
       <div className={styles['modal-container']}>
         <div className={styles['modal-header']}>
-          <a href="#" onClick={handleCloseClick}>
-            x
-          </a>
+          <span className={styles['modal-title']}>
+            {`Create an ad for an LDM fund`}
+          </span>
+          <Button className={styles['close-button']} onClick={handleCloseClick}>
+            {'Close'}
+          </Button>
         </div>
-        <div className={styles['modal-body']}>{children}</div>
+        <div className={styles['modal-body']}>
+          <Carousel />
+        </div>
       </div>
     </div>
   ) : null;

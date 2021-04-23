@@ -11,17 +11,28 @@
 }
 
 .modal-container {
+  display: flex;
+  flex-direction: column;
   background: white;
   width: 85%;
   height: 85%;
-  border-radius: 10px;
-  padding: 15px;
+  border-radius: 0.5em;
+  padding: 1.5em;
 }
 
 .modal-header {
   display: flex;
-  justify-content: flex-end;
-  font-size: 25px;
+  flex-direction: row;
+  font-size: 1.5em;
 }
 
+.modal-title {
+  flex: 1 1 0;
+  text-align: center;
+}
+
+.modal-body {
+  height: 95%;
+  box-sizing: border-box;
+}
 
