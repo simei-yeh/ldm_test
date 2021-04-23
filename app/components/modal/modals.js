@@ -23,7 +23,7 @@ const Modals = ({ show, onClose, children, title }) => {
           <span className={styles['modal-title']}>
             {`Create an ad for an LDM fund`}
           </span>
-          <Button className={styles['close-button']} onClick={handleCloseClick}>
+          <Button className={styles['close-button']} callback={handleCloseClick}>
             {'Close'}
           </Button>
         </div>
