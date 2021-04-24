@@ -4,7 +4,7 @@ import styles from './form.module.css';
 
 const Form = ({ formList }) => {
   return (
-    <div>
+    <div className={styles['form-container']}>
       {formList.map((form, i) => <Input key={i} inputs={form} />)}
     </div>
   )

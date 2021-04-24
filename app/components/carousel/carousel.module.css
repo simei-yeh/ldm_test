@@ -1,0 +1,11 @@
+.carousel-container {
+  height: 100%;
+  background-color: powderblue;
+  position: relative;
+  /* overflow: hidden; */
+}
+
+.carousel-track {
+  height: 100%;
+  display: flex;
+}
