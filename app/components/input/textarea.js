@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './input.module.css';
 
-const Options = ({ value }) => {
+const Textarea = ({ name, callback }) => {
   return (
-    <option value={value}>
-      {value}
-    </option>
+    <textarea rows="4">
+    </textarea>
   )
 }
 
-export default Options;
+export default Textarea;
