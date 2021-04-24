@@ -4,7 +4,7 @@ import styles from './modals.module.css';
 import Carousel from '../carousel/carousel';
 import Button from '../button/button';
 
-const Modals = ({ show, onClose, formPages, children }) => {
+const Modals = ({ show, onClose, inputs, children }) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -21,9 +21,10 @@ const Modals = ({ show, onClose, formPages, children }) => {
       <div className={styles['modal-container']}>
         <div className={styles['modal-header']}>
           <span className={styles['modal-title']}>
-            {`Create an ad for an LDM fund`}
+            {`Create an ad for an investment fund`}
           </span>
           <Button
+            show={true}
             callback={handleCloseClick}
             text="Close"
             id="close"
@@ -31,7 +32,7 @@ const Modals = ({ show, onClose, formPages, children }) => {
         </div>
         <div className={styles['modal-body']}>
           <Carousel
-            formPages={formPages}
+            inputs={inputs}
           />
         </div>
       </div>

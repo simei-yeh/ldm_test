@@ -3,13 +3,13 @@ import Modals from '../components/modal/modals'
 import React, { useEffect, useRef, useState } from 'react';
 
 export async function getStaticProps() {
-  const formPages = require('../formPages.json')
+  const inputs = require('../inputList.json')
 
-  return { props: { formPages } }
+  return { props: { inputs } }
 }
 
 
-export default function Home({ formPages }) {
+export default function Home({ inputs }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -18,7 +18,7 @@ export default function Home({ formPages }) {
         <Modals
           onClose={() => setShowModal(false)}
           show={showModal}
-          formPages={formPages}
+          inputs={inputs}
         >
         </Modals>
     </div>

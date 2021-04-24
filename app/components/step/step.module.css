@@ -1,0 +1,9 @@
+.step-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 1em;
+  flex: 0 0 100%;
+  font-weight: bold;
+}
