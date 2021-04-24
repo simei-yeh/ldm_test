@@ -25,7 +25,7 @@ const Modals = ({ show, onClose, formPages, children }) => {
           </span>
           <Button
             callback={handleCloseClick}
-            name="Close"
+            text="Close"
             id="close"
           />
         </div>
