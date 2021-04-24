@@ -9,7 +9,7 @@ export async function getStaticProps() {
 }
 
 
-export default function Home() {
+export default function Home({ formPages }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -18,6 +18,7 @@ export default function Home() {
         <Modals
           onClose={() => setShowModal(false)}
           show={showModal}
+          formPages={formPages}
         >
         </Modals>
     </div>

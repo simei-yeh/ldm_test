@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './modals.module.css';
-import Carousel from '../carousel/carousel.js';
-import Button from '../button/button.js';
+import Carousel from '../carousel/carousel';
+import Button from '../button/button';
 
-const Modals = ({ show, onClose, children, title }) => {
+const Modals = ({ show, onClose, formPages, children }) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -23,12 +23,16 @@ const Modals = ({ show, onClose, children, title }) => {
           <span className={styles['modal-title']}>
             {`Create an ad for an LDM fund`}
           </span>
-          <Button className={styles['close-button']} callback={handleCloseClick}>
-            {'Close'}
-          </Button>
+          <Button
+            callback={handleCloseClick}
+            name="Close"
+            id="close"
+          />
         </div>
         <div className={styles['modal-body']}>
-          <Carousel />
+          <Carousel
+            formPages={formPages}
+          />
         </div>
       </div>
     </div>
