@@ -3,7 +3,7 @@ import styles from './input.module.css';
 
 const Textarea = ({ name, callback }) => {
   return (
-    <textarea rows="4">
+    <textarea rows="4" onChange={callback} name={name}>
     </textarea>
   )
 }
