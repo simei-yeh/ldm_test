@@ -11,7 +11,7 @@ import styles from './carousel.module.css';
 const Carousel = ({ inputs }) => {
   const pages = 4;
   const [step, setStep] = useState(1);
-  const [values, setValues] = useState({name: '', date: '', mgmtfees: '', newInvestors: '',
+  const [values, setValues] = useState({name: '', date: '', description: '', mgmtfees: '', newInvestors: '',
     fundType: '', returns: '', confirmation: ''});
   const [showForwardButton, setShowForwardButton] = useState(true);
   const [showBackButton, setShowBackButton] = useState(false);
@@ -19,6 +19,7 @@ const Carousel = ({ inputs }) => {
     const { name, value } = e.target
     console.log('this is working', name, value)
     setValues({ ...values, [name]: value })
+    console.log(values)
   }
 
   useEffect(() => {
@@ -48,27 +49,28 @@ const Carousel = ({ inputs }) => {
       <div id="track" className={styles['carousel-track']} >
         <Form>
           <Step message="Enter fund name and date">
-            <Input type="text" label="Fund Name" callback={handleInputChange} />
+            <Input type="text" label="Fund Name" name="name" callback={handleInputChange} />
             <Input type="date" label="Date" name="date" callback={handleInputChange} />
           </Step>
           <Step message="Enter ad description and management fees">
-            <Textarea />
-            <Select type="select" name="Management Fees" id="mgmtfees"
+            <Textarea callback={handleInputChange} name="description" />
+            <Select type="select" label="Management Fees" name="mgmtfees"
               callback={handleInputChange}>
-              {["", "10%", "15%", "20%"].map((fee, i) => <Options value={fee} />)}
+              {["", "10%", "15%", "20%"].map((fee, i) => <Options key={i} value={fee} />)}
             </Select>
           </Step>
           <Step message="Choose fund types">
             <span>{`Open to New Investors?`}</span>
-            {['Open', 'Closed'].map((option, i) => <Input type="radio" value={option}
-              name="newInvestors" />)}
+            {['Open', 'Closed'].map((option, i) => <Input type="radio" key={i} value={option}
+              name="newInvestors" callback={handleInputChange} />)}
             <span>{`Fund type`}</span>
             {['Hedge Fund', 'Venture Capital', 'Private Equity'].map((option, i) =>
-              <Input type="checkbox" value={option} name="fundType" />)}
+              <Input type="checkbox" key={i} value={option} name="fundType"
+              callback={handleInputChange} />)}
           </Step>
           <Step message="Confirm yearly returns and submit">
             <Input type="range" min="0%" max="100%" step="5%" label="Yearly Returns"
-              name="returns" />
+              name="returns" callback={handleInputChange} />
             <Input type="image" src="/submit.png" />
           </Step>
         </Form>
