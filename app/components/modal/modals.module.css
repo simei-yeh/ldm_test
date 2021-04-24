@@ -25,6 +25,7 @@
   flex-direction: row;
   font-size: 1.5em;
   padding: 0.5em;
+  align-items: center;
 }
 
 .modal-title {
