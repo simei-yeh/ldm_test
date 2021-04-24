@@ -20,7 +20,7 @@ const Carousel = ({ children, formPages }) => {
         />
       </div>
       <div id="track" className={styles['carousel-track']} >
-        {keys.map((k, i) => <Form key={k} inputs={formPages[k]} />)}
+        {keys.map((k, i) => <Form key={k} formList={formPages[k]} />)}
       </div>
     </div>
   )
