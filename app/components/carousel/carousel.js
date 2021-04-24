@@ -1,23 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Button from '../button/button.js';
+import Button from '../button/button';
+import Form from '../form/form';
 import styles from './carousel.module.css';
 
-const Carousel = ({ children }) => {
+const Carousel = ({ children, formPages }) => {
+  const keys = Object.keys(formPages);
+
   return (
     <div className={styles['carousel-container']}>
       <div>
         <Button
           id="forward"
-          name="Continue"
+          text="Continue"
           callback={() => {  }}
         />
         <Button id="backward"
-          name="Go Back"
+          text="Go Back"
           callback={() => {  }}
         />
       </div>
       <div id="track" className={styles['carousel-track']} >
-        {children}
+        {keys.map((k, i) => <Form key={k} inputs={formPages[k]} />)}
       </div>
     </div>
   )
