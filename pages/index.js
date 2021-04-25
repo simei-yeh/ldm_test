@@ -4,7 +4,7 @@ import Modals from '../components/modal/modals'
 import Ads from '../components/ads/ads'
 import React, { useEffect, useRef, useState } from 'react';
 
-export default function Home({ inputs }) {
+export default function Home({}) {
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submittedValues, setSubmittedValues] = useState([]);
@@ -25,7 +25,6 @@ export default function Home({ inputs }) {
           onClose={() => setShowModal(false)}
           show={showModal}
           submission={isSubmitted}
-          inputs={inputs}
         >
         </Modals>
         <Ads createdAds={submittedValues} />
