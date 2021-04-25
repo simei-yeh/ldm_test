@@ -4,16 +4,16 @@ import styles from './input.module.css';
 interface Props {
   type: string,
   name: string,
-  id: string,
-  children: (React.ReactNode & {type: string})[]
+  children?: (React.ReactNode & {type: string}),
+  selected: string,
   callback: (event: React.MouseEvent) => void,
 }
 
-const Select: React.FunctionComponent<Props> = ({ type, name, id, children, callback, }) => {
+const Select: React.FunctionComponent<Props> = ({ type, name, children, callback, }) => {
   return (
     <>
       <label htmlFor={type} className={styles['label']}>{name}</label>
-      <select name={name} id={id} required onChange={callback}>
+      <select name={name} required onChange={callback}>
         {children}
       </select>
     </>

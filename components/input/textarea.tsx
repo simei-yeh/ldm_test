@@ -3,6 +3,7 @@ import React from 'react';
 interface Props {
   name: string,
   callback: (event: React.MouseEvent) => void,
+  value: string,
 }
 
 const Textarea: React.FunctionComponent<Props> = ({ name, callback }) => {

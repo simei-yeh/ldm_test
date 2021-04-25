@@ -19,7 +19,7 @@ interface Submission {
 }
 
 interface Props {
-  submission: () => Submission,
+  submission: (values: Submission) => void,
 }
 
 const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
@@ -107,7 +107,7 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
         <Button type="submit" callback={handleSubmit} text="Submit Information" show={submitButton} id="submit" />
       </div>
       <div id="track" className={styles['carousel-track']} >
-        <Form callback={handleSubmit} ref={formRef} >
+        <Form ref={formRef} >
           <Step message="Enter fund name and date" >
             <Input type="text" name="Fund Name" callback={(e) => { validateText(e.target.value), handleInputChange(e) }} value={values["Fund Name"]} />
             <Input type="date" name="Date" callback={handleInputChange} value={values["Date"]} />
@@ -130,7 +130,7 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
           </Step>
           <Step message="Confirm yearly returns and submit">
             <Input type="range" min="0" max="100" name="Yearly Returns" callback={handleInputChange} value={values["Yearly Returns"]} />
-            <Input type="file" callback={handleInputChange} name="File Upload" />
+            <Input type="file" callback={handleInputChange} name="File Upload" value={values["File Upload"]} />
           </Step>
         </Form>
       </div>

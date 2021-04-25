@@ -4,10 +4,20 @@ import styles from './modals.module.css';
 import Carousel from '../carousel/carousel';
 import Button from '../button/button';
 
+interface Submission {
+  "Date": string,
+  "Description": string,
+  "File Upload": string,
+  "Fund Name": string,
+  "Management Fees": string,
+  "New Investors": string,
+  "Yearly Returns": string
+}
+
 interface Props {
   show: boolean,
   onClose: () => void,
-  submission: (event: React.MouseEvent) => void,
+  submission: (values: Submission) => void,
 }
 
 const Modals: React.FunctionComponent<Props> = ({ show, onClose, submission }) => {
