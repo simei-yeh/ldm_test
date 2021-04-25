@@ -8,18 +8,20 @@ import Select from '../input/select'
 import Textarea from '../input/textarea'
 import styles from './carousel.module.css';
 
-const Carousel = ({ inputs, submission }) => {
-  const pages = 4;
-  const [step, setStep] = useState(1);
+const Carousel = ({ submission }) => {
+  const [containerRef, formRef] = [useRef(), useRef()];
+  const [step, setStep] = useState(0);
   const [values, setValues] = useState({"Fund Name": '', "Date": '', "Description": '', "Management Fees": '',
     "New Investors": '', "Fund Type": '', "Yearly Returns": '', "File Upload": ''});
   const [showForwardButton, setShowForwardButton] = useState(true);
   const [showBackButton, setShowBackButton] = useState(false);
+  const [submitButton, setShowSubmitButton] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
     localStorage.setItem('coolFundInformation', JSON.stringify(values));
+    console.log(formRef.current.scrollWidth);
     console.log('this is working', name, value, values);
   }
 
@@ -62,31 +64,35 @@ const Carousel = ({ inputs, submission }) => {
 
 
   useEffect(() => {
-    if (step === 1) setShowBackButton(false);
-    else if (step === pages) setShowForwardButton(false);
-    else if (!showForwardButton) setShowForwardButton(true);
-    else if (!showBackButton) setShowBackButton(true);
+    if (step === 0) {setShowBackButton(false);}
+    else if (step === (formRef.current.scrollWidth - containerRef.current.clientWidth)) {
+      setShowForwardButton(false);
+      setShowSubmitButton(true);
+    }
+    else if (!showForwardButton) {setShowForwardButton(true);}
+    else if (!showBackButton) {setShowBackButton(true);}
+    formRef.current.style.transform = `translateX(-${step}px)`;
   }, [step])
 
   return (
-    <div className={styles['carousel-container']}>
+    <div className={styles['carousel-container']} ref={containerRef}>
       <div>
         <Button
           show={showForwardButton}
           id="forward"
           text="Continue"
-          callback={() => { setStep(step + 1) }}
+          callback={() => { setStep(step + containerRef.current.clientWidth) }}
         />
         <Button
           show={showBackButton}
           id="backward"
           text="Go Back"
-          callback={() => { setStep(step - 1) }}
+          callback={() => { setStep(step - containerRef.current.clientWidth) }}
         />
       </div>
 
       <div id="track" className={styles['carousel-track']} >
-        <Form callback={handleSubmit} >
+        <Form callback={handleSubmit} ref={formRef} >
           <Step message="Enter fund name and date" >
             <Input type="text" name="Fund Name" callback={(e) => {validateText(e), handleInputChange(e)}} value={values["Fund Name"]} />
             <Input type="date" name="Date" callback={handleInputChange} value={values["Date"]} />
@@ -111,7 +117,7 @@ const Carousel = ({ inputs, submission }) => {
             <Input type="range" min="0%" max="100%" step="5%" label="Yearly Returns"
               name="Yearly Returns" callback={handleInputChange} value={values["Yearly Returns"]} />
             <Input type="file" callback={handleInputChange} name="File Upload" />
-            <Button type="submit" callback={handleSubmit} text="Submit Information" show={true} id="submit" />
+            <Button type="submit" callback={handleSubmit} text="Submit Information" show={submitButton} id="submit" />
           </Step>
         </Form>
       </div>

@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './form.module.css';
 
-const Form = ({ children }) => {
+const Form = React.forwardRef(({ children }, ref) => {
   return (
-    <form id="form" className={styles['form-content']} >
+    <form id="form" className={styles['form-content']} ref={ref}>
       {children}
     </form>
   )
-}
+})
 
 export default Form;
