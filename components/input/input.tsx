@@ -7,17 +7,22 @@ interface Props {
   name: string,
   value: string,
   src: string | undefined,
+  min: string | undefined,
+  max: string | undefined,
   callback: () => EventTarget,
 }
 
-const Input: React.FunctionComponent<Props> = ({ label, type, name, value, src, callback}) => {
+const Input: React.FunctionComponent<Props> = ({ label, type, name, value, src, min, max, callback }) => {
   return (
     <div className={`${styles['input-container']}`}>
       <label htmlFor={type} className={styles['label']}>{label ? label : name}</label>
+      {type === "range" ? <span>{min}</span> : null}
       <input type={type} className={`${styles['input']} ${styles[type]}`}
-        value={value} name={name} src={src} onChange={callback}></input>
+        value={value} name={name} min={min} max={max} src={src} onChange={callback}></input>
+      {type === "range" ? <span>{max}</span> : null}
+      {type === "range" ? <p><span className={styles['range-slider']}>{`current value: ${value}`}</span></p> : null}
     </div>
-    )
+  )
 }
 
 export default Input;

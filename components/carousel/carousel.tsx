@@ -25,8 +25,10 @@ interface Props {
 const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
   const [containerRef, formRef] = [useRef(), useRef()];
   const [step, setStep] = useState(0);
-  const [values, setValues] = useState({"Fund Name": '', "Date": '', "Description": '', "Management Fees": '',
-    "New Investors": '', "Fund Type": '', "Yearly Returns": '', "File Upload": ''});
+  const [values, setValues] = useState({
+    "Fund Name": '', "Date": '', "Description": '', "Management Fees": '',
+    "New Investors": '', "Fund Type": '', "Yearly Returns": '', "File Upload": ''
+  });
   const [showForwardButton, setShowForwardButton] = useState(true);
   const [showBackButton, setShowBackButton] = useState(false);
   const [submitButton, setShowSubmitButton] = useState(false);
@@ -35,11 +37,12 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
     localStorage.setItem('coolFundInformation', JSON.stringify(values));
+    console.log(name, value)
   }
 
   const validateText = (value) => {
     var letterNumber = /^[0-9a-zA-Z]+$/;
-    if ( !value.match(letterNumber) ) {
+    if (!value.match(letterNumber)) {
       alert('Please enter only alphanumeric characters in Fund Name');
       return false;
     }
@@ -75,13 +78,14 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
 
 
   useEffect(() => {
-    if (step === 0) {setShowBackButton(false);}
+    if (step === 0) { setShowBackButton(false); }
     else if (step === (formRef.current.scrollWidth - containerRef.current.clientWidth)) {
       setShowForwardButton(false);
       setShowSubmitButton(true);
     }
-    else if (!showForwardButton) {setShowForwardButton(true);}
-    else if (!showBackButton) {setShowBackButton(true);}
+    else if (!showForwardButton) { setShowForwardButton(true); }
+    else if (!showBackButton) { setShowBackButton(true); }
+    if (step !== (formRef.current.scrollWidth - containerRef.current.clientWidth)) {setShowSubmitButton(false);}
     formRef.current.style.transform = `translateX(-${step}px)`;
   }, [step])
 
@@ -100,15 +104,15 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
           text="Go Back"
           callback={() => { setStep(step - containerRef.current.clientWidth) }}
         />
+        <Button type="submit" callback={handleSubmit} text="Submit Information" show={submitButton} id="submit" />
       </div>
-
       <div id="track" className={styles['carousel-track']} >
         <Form callback={handleSubmit} ref={formRef} >
           <Step message="Enter fund name and date" >
-            <Input type="text" name="Fund Name" callback={(e) => {validateText(e.target.value), handleInputChange(e)}} value={values["Fund Name"]} />
+            <Input type="text" name="Fund Name" callback={(e) => { validateText(e.target.value), handleInputChange(e) }} value={values["Fund Name"]} />
             <Input type="date" name="Date" callback={handleInputChange} value={values["Date"]} />
           </Step>
-          <Step  message="Enter ad description and management fees" >
+          <Step message="Enter ad description and management fees" >
             <Textarea callback={handleInputChange} name="Description" value={values["Description"]} />
             <Select type="select" name="Management Fees"
               callback={handleInputChange} selected={values["Management Fees"]} >
@@ -122,13 +126,11 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
             <span>{`Fund type`}</span>
             {['Hedge Fund', 'Venture Capital', 'Private Equity'].map((option, i) =>
               <Input type="checkbox" key={i} value={option} label={option} name="Fund Type"
-              callback={handleInputChange} />)}
+                callback={handleInputChange} />)}
           </Step>
           <Step message="Confirm yearly returns and submit">
-            <Input type="range" min="0%" max="100%" step="5%" label="Yearly Returns"
-              name="Yearly Returns" callback={handleInputChange} value={values["Yearly Returns"]} />
+            <Input type="range" min="0" max="100" name="Yearly Returns" callback={handleInputChange} value={values["Yearly Returns"]} />
             <Input type="file" callback={handleInputChange} name="File Upload" />
-            <Button type="submit" callback={handleSubmit} text="Submit Information" show={submitButton} id="submit" />
           </Step>
         </Form>
       </div>
