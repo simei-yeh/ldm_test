@@ -7,7 +7,7 @@ import Button from '../button/button';
 interface Props {
   show: boolean,
   onClose: () => void,
-  submission: (values:any) => void,
+  submission: (event: React.MouseEvent) => void,
 }
 
 const Modals: React.FunctionComponent<Props> = ({ show, onClose, submission }) => {

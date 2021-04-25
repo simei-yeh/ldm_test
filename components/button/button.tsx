@@ -6,7 +6,7 @@ interface Props {
   show: boolean,
   text: string,
   id: string,
-  callback: (e:EventTarget) => void,
+  callback: (event: React.MouseEvent) => void,
 }
 
 const Button: React.FunctionComponent<Props> = ({ show, text, id, callback }) => {

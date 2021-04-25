@@ -6,7 +6,7 @@ interface Props {
   name: string,
   id: string,
   children: (React.ReactNode & {type: string})[]
-  callback: (e:EventTarget) => void,
+  callback: (event: React.MouseEvent) => void,
 }
 
 const Select: React.FunctionComponent<Props> = ({ type, name, id, children, callback, }) => {

@@ -10,7 +10,7 @@ interface Props {
   src?: string,
   min?: string,
   max?: string,
-  callback: (e:EventTarget) => void,
+  callback: (event: React.MouseEvent) => void,
 }
 
 const Input: React.FunctionComponent<Props> = ({ label, type, name, value, src, min, max, callback }) => {
