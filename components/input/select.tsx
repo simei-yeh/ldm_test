@@ -4,9 +4,9 @@ import styles from './input.module.css';
 interface Props {
   type: string,
   name: string,
-  children?: (React.ReactNode & {type: string}),
+  children?: (React.ReactNode & {type: string})[],
   selected: string,
-  callback: (event: React.MouseEvent) => void,
+  callback: React.ChangeEventHandler<HTMLSelectElement>,
 }
 
 const Select: React.FunctionComponent<Props> = ({ type, name, children, callback, }) => {

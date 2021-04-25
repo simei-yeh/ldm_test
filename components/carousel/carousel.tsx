@@ -18,12 +18,20 @@ interface Submission {
   "Yearly Returns": string
 }
 
+interface RefObject {
+  style: {
+    transform:() => void,
+  }
+  scrollWidth?: number,
+  clientWidth?: number,
+}
+
 interface Props {
   submission: (values: Submission) => void,
 }
 
 const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
-  const [containerRef, formRef] = [useRef(), useRef()];
+  const [containerRef, formRef] = [useRef(null), useRef(null)];
   const [step, setStep] = useState(0);
   const [values, setValues] = useState({
     "Fund Name": '', "Date": '', "Description": '', "Management Fees": '',
@@ -59,10 +67,8 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
         return;
       }
     }
-    if (validateText(values["Fund Name"])) {
-      localStorage.removeItem('coolFundInformation');
-      submission(values);
-    }
+    localStorage.removeItem('coolFundInformation');
+    submission(values);
   }
 
   useEffect(() => {
@@ -75,7 +81,6 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
       }
     }
   }, []);
-
 
   useEffect(() => {
     if (step === 0) { setShowBackButton(false); }
@@ -109,7 +114,7 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
       <div id="track" className={styles['carousel-track']} >
         <Form ref={formRef} >
           <Step message="Enter fund name and date" >
-            <Input type="text" name="Fund Name" callback={(e) => { validateText(e.target.value), handleInputChange(e) }} value={values["Fund Name"]} />
+            <Input type="text" name="Fund Name" callback={(e) => { validateText(e), handleInputChange(e) }} value={values["Fund Name"]} />
             <Input type="date" name="Date" callback={handleInputChange} value={values["Date"]} />
           </Step>
           <Step message="Enter ad description and management fees" >

@@ -2,13 +2,13 @@ import React from 'react';
 
 interface Props {
   name: string,
-  callback: (event: React.MouseEvent) => void,
+  callback: React.ChangeEventHandler<HTMLTextAreaElement>,
   value: string,
 }
 
 const Textarea: React.FunctionComponent<Props> = ({ name, callback }) => {
   return (
-    <textarea rows="4" onChange={callback} name={name}>
+    <textarea rows={4} onChange={callback} name={name}>
     </textarea>
   )
 }
