@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './step.module.css';
 
 interface StepProps {
-  children: (React.ReactNode & {type: string})[]
   message: string,
 }
 

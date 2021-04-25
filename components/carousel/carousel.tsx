@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Button from '../button/button.tsx';
-import Form from '../form/form.tsx';
-import Step from '../step/step.tsx';
-import Input from '../input/input.tsx';
-import Options from '../input/options.tsx';
-import Select from '../input/select.tsx';
-import Textarea from '../input/textarea.tsx';
+import Button from '../button/button';
+import Form from '../form/form';
+import Step from '../step/step';
+import Input from '../input/input';
+import Options from '../input/options';
+import Select from '../input/select';
+import Textarea from '../input/textarea';
 import styles from './carousel.module.css';
 
 interface Submission {

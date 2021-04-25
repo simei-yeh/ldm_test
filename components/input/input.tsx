@@ -2,14 +2,15 @@ import React from 'react';
 import styles from './input.module.css';
 
 interface Props {
-  label: string | undefined,
+  key?: string | number,
+  label?: string | undefined,
   type: string,
   name: string,
   value: string,
-  src: string | undefined,
-  min: string | undefined,
-  max: string | undefined,
-  callback: () => EventTarget,
+  src?: string,
+  min?: string,
+  max?: string,
+  callback: (e:EventTarget) => void,
 }
 
 const Input: React.FunctionComponent<Props> = ({ label, type, name, value, src, min, max, callback }) => {

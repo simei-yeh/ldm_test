@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './input.module.css';
 
 interface Props {
+  key: number,
   value: string | number,
 }
 

@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './modals.module.css';
-import Carousel from '../carousel/carousel.tsx';
-import Button from '../button/button.tsx';
-
-interface Submission {
-  "Date": string,
-  "Description": string,
-  "File Upload": string,
-  "Fund Name": string,
-  "Management Fees": string,
-  "New Investors": string,
-  "Yearly Returns": string
-}
+import Carousel from '../carousel/carousel';
+import Button from '../button/button';
 
 interface Props {
   show: boolean,
   onClose: () => void,
-  submission: Submission,
+  submission: (values:any) => void,
 }
 
 const Modals: React.FunctionComponent<Props> = ({ show, onClose, submission }) => {

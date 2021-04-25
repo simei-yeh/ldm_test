@@ -2,14 +2,14 @@ import React from 'react';
 import styles from './button.module.css';
 
 interface Props {
+  type?: string,
   show: boolean,
-  children: (React.ReactNode & {type: string})[],
   text: string,
   id: string,
-  callback: () => EventTarget,
+  callback: (e:EventTarget) => void,
 }
 
-const Button = ({ show, children, text, id, callback }) => {
+const Button: React.FunctionComponent<Props> = ({ show, text, id, callback }) => {
   return (
     <div>
       {
