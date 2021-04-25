@@ -1,14 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Button from '../button/button';
-import Form from '../form/form';
+import Button from '../button/button.tsx';
+import Form from '../form/form.tsx';
 import Step from '../step/step.tsx';
-import Input from '../input/input'
-import Options from '../input/options'
-import Select from '../input/select'
-import Textarea from '../input/textarea'
+import Input from '../input/input.tsx';
+import Options from '../input/options.tsx';
+import Select from '../input/select.tsx';
+import Textarea from '../input/textarea.tsx';
 import styles from './carousel.module.css';
 
-const Carousel = ({ submission }) => {
+interface Submission {
+  "Date": string,
+  "Description": string,
+  "File Upload": string,
+  "Fund Name": string,
+  "Management Fees": string,
+  "New Investors": string,
+  "Yearly Returns": string
+}
+
+interface Props {
+  submission: () => Submission,
+}
+
+const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
   const [containerRef, formRef] = [useRef(), useRef()];
   const [step, setStep] = useState(0);
   const [values, setValues] = useState({"Fund Name": '', "Date": '', "Description": '', "Management Fees": '',
@@ -21,15 +35,12 @@ const Carousel = ({ submission }) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
     localStorage.setItem('coolFundInformation', JSON.stringify(values));
-    console.log(formRef.current.scrollWidth);
-    console.log('this is working', name, value, values);
   }
 
-  const validateText = (e) => {
-    const { value } = e.target;
+  const validateText = (value) => {
     var letterNumber = /^[0-9a-zA-Z]+$/;
     if ( !value.match(letterNumber) ) {
-      alert('Please enter only alphanumeric characters');
+      alert('Please enter only alphanumeric characters in Fund Name');
       return false;
     }
     return true;
@@ -94,7 +105,7 @@ const Carousel = ({ submission }) => {
       <div id="track" className={styles['carousel-track']} >
         <Form callback={handleSubmit} ref={formRef} >
           <Step message="Enter fund name and date" >
-            <Input type="text" name="Fund Name" callback={(e) => {validateText(e), handleInputChange(e)}} value={values["Fund Name"]} />
+            <Input type="text" name="Fund Name" callback={(e) => {validateText(e.target.value), handleInputChange(e)}} value={values["Fund Name"]} />
             <Input type="date" name="Date" callback={handleInputChange} value={values["Date"]} />
           </Step>
           <Step  message="Enter ad description and management fees" >

@@ -1,14 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import styles from './step.module.css';
 
-const Step = ({ show, children, message }) => {
-  return (
-    <div className={styles['step-content']}>
+interface StepProps {
+  children: (React.ReactNode & {type: string})[]
+  message: string,
+}
+
+const Step: React.FunctionComponent<StepProps> = ({ children, message }) => {
+  return (<div className={styles['step-content']}>
       {message}
       <p></p>
       {children}
     </div>
-  )
+    )
 }
 
 export default Step;

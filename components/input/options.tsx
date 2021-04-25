@@ -1,7 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import styles from './input.module.css';
 
-const Options = ({ value }) => {
+interface Props {
+  value: string | number,
+}
+
+const Options: React.FunctionComponent<Props> = ({ value }) => {
   return (
     <option value={value}>
       {value}

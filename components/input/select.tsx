@@ -1,7 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import styles from './input.module.css';
 
-const Select = ({ type, name, id, children, callback, label }) => {
+interface Props {
+  type: string,
+  name: string,
+  id: string,
+  children: (React.ReactNode & {type: string})[]
+  callback: () => EventTarget,
+}
+
+const Select: React.FunctionComponent<Props> = ({ type, name, id, children, callback, }) => {
   return (
     <>
       <label htmlFor={type} className={styles['label']}>{name}</label>
