@@ -1,14 +1,8 @@
 import Head from 'next/head'
 import Button from '../components/button/button'
 import Modals from '../components/modal/modals'
+import Ads from '../components/ads/ads'
 import React, { useEffect, useRef, useState } from 'react';
-
-export async function getStaticProps() {
-  const inputs = require('../inputList.json')
-
-  return { props: { inputs } }
-}
-
 
 export default function Home({ inputs }) {
   const [showModal, setShowModal] = useState(false);
@@ -34,6 +28,8 @@ export default function Home({ inputs }) {
           inputs={inputs}
         >
         </Modals>
+        <Ads createdAds={submittedValues} />
     </div>
   )
 }
+
