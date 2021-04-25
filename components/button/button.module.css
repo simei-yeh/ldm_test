@@ -21,11 +21,17 @@
   font-size: 0.8em;
 }
 
-.forward, .backward {
+.forward, .backward, .submit {
   position: absolute;
   bottom: 0;
 }
 
-.forward {
+.forward, .submit {
   right: 0;
+}
+
+.entry {
+  position: relative;
+  top: 10px;
+  left: 10px;
 }
