@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Button from '../button/button';
 import Form from '../form/form';
 import Step from '../step/step.tsx';
-import Input from '../input/input'
+import Input from '../input/input.tsx'
 import Options from '../input/options'
 import Select from '../input/select'
 import Textarea from '../input/textarea'
