@@ -16,7 +16,7 @@ export default function Home({ inputs }) {
     setSubmitted(true);
     setShowModal(false);
     console.log(submittedValues, submitted);
-  }
+  };
 
   return (
     <div>
