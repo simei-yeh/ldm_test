@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Button from '../components/button/button.tsx'
-import Modals from '../components/modal/modals'
+import Modals from '../components/modal/modals.tsx'
 import Ads from '../components/ads/ads.tsx'
 import React, { useEffect, useRef, useState } from 'react';
 

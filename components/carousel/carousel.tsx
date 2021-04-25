@@ -2,13 +2,27 @@ import React, { useEffect, useRef, useState } from 'react';
 import Button from '../button/button.tsx';
 import Form from '../form/form.tsx';
 import Step from '../step/step.tsx';
-import Input from '../input/input.tsx'
-import Options from '../input/options.tsx'
-import Select from '../input/select.tsx'
-import Textarea from '../input/textarea.tsx'
+import Input from '../input/input.tsx';
+import Options from '../input/options.tsx';
+import Select from '../input/select.tsx';
+import Textarea from '../input/textarea.tsx';
 import styles from './carousel.module.css';
 
-const Carousel = ({ submission }) => {
+interface Submission {
+  "Date": string,
+  "Description": string,
+  "File Upload": string,
+  "Fund Name": string,
+  "Management Fees": string,
+  "New Investors": string,
+  "Yearly Returns": string
+}
+
+interface Props {
+  submission: Submission,
+}
+
+const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
   const [containerRef, formRef] = [useRef(), useRef()];
   const [step, setStep] = useState(0);
   const [values, setValues] = useState({"Fund Name": '', "Date": '', "Description": '', "Management Fees": '',
@@ -29,7 +43,7 @@ const Carousel = ({ submission }) => {
     const { value } = e.target;
     var letterNumber = /^[0-9a-zA-Z]+$/;
     if ( !value.match(letterNumber) ) {
-      alert('Please enter only alphanumeric characters');
+      alert('Please enter only alphanumeric characters in Fund Name');
       return false;
     }
     return true;
