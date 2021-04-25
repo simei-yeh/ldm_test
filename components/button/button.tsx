@@ -1,8 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import styles from './button.module.css';
 
-const Button = ({ show, onClose, children, text, id, callback }) => {
+interface Props {
+  show: boolean,
+  children: (React.ReactNode & {type: string})[],
+  text: string,
+  id: string,
+  callback: any,
+}
+
+const Button = ({ show, children, text, id, callback }) => {
   return (
     <div>
       {

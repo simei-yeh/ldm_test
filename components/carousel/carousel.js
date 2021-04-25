@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Button from '../button/button';
+import Button from '../button/button.tsx';
 import Form from '../form/form.tsx';
 import Step from '../step/step.tsx';
 import Input from '../input/input.tsx'

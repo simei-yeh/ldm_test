@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import styles from './ads.module.css';
 
 const Ads = ({ createdAds }) => {

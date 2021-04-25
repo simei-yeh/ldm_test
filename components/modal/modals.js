@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './modals.module.css';
 import Carousel from '../carousel/carousel';
-import Button from '../button/button';
+import Button from '../button/button.tsx';
 
 const Modals = ({ show, onClose, children, submission }) => {
   const [isBrowser, setIsBrowser] = useState(false);
