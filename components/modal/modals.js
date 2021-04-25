@@ -4,7 +4,7 @@ import styles from './modals.module.css';
 import Carousel from '../carousel/carousel';
 import Button from '../button/button';
 
-const Modals = ({ show, onClose, inputs, children }) => {
+const Modals = ({ show, onClose, inputs, children, submission }) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -33,6 +33,7 @@ const Modals = ({ show, onClose, inputs, children }) => {
         <div className={styles['modal-body']}>
           <Carousel
             inputs={inputs}
+            submission={submission}
           />
         </div>
       </div>
