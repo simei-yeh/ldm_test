@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './modals.module.css';
-import Carousel from '../carousel/carousel';
+import Carousel from '../carousel/carousel.tsx';
 import Button from '../button/button.tsx';
 
 const Modals = ({ show, onClose, children, submission }) => {

@@ -6,7 +6,7 @@ interface Props {
   children: (React.ReactNode & {type: string})[],
   text: string,
   id: string,
-  callback: any,
+  callback: () => EventTarget,
 }
 
 const Button = ({ show, children, text, id, callback }) => {

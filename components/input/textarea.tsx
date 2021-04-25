@@ -2,7 +2,7 @@ import React from 'react';
 
 interface Props {
   name: string,
-  callback: any,
+  callback: () => EventTarget,
 }
 
 const Textarea: React.FunctionComponent<Props> = ({ name, callback }) => {

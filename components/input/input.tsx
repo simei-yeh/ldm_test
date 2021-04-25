@@ -7,7 +7,7 @@ interface Props {
   name: string,
   value: string,
   src: string | undefined,
-  callback: any,
+  callback: () => EventTarget,
 }
 
 const Input: React.FunctionComponent<Props> = ({ label, type, name, value, src, callback}) => {
