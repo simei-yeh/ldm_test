@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Button from '../components/button/button.tsx'
 import Modals from '../components/modal/modals.tsx'
 import Ads from '../components/ads/ads.tsx'
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 export default function Home({}) {
   const [showModal, setShowModal] = useState(false);
