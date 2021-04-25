@@ -1,21 +1,16 @@
 import Head from 'next/head'
-import Button from '../components/button/button.tsx'
-import Modals from '../components/modal/modals.tsx'
-import Ads from '../components/ads/ads.tsx'
+import Button from '../components/button/button.tsx';
+import Modals from '../components/modal/modals.tsx';
+import Ads from '../components/ads/ads.tsx';
 import React, { useState } from 'react';
 
 export default function Home({}) {
   const [showModal, setShowModal] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [submittedValues, setSubmittedValues] = useState([]);
 
   const isSubmitted = (values) => {
-    event.preventDefault();
-    console.log(values)
     setSubmittedValues([...submittedValues, values]);
-    setSubmitted(true);
     setShowModal(false);
-    console.log(submittedValues, submitted);
   };
 
   return (

@@ -19,7 +19,7 @@ interface Submission {
 }
 
 interface Props {
-  submission: Submission,
+  submission: () => Submission,
 }
 
 const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
@@ -35,12 +35,9 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
     localStorage.setItem('coolFundInformation', JSON.stringify(values));
-    console.log(formRef.current.scrollWidth);
-    console.log('this is working', name, value, values);
   }
 
-  const validateText = (e) => {
-    const { value } = e.target;
+  const validateText = (value) => {
     var letterNumber = /^[0-9a-zA-Z]+$/;
     if ( !value.match(letterNumber) ) {
       alert('Please enter only alphanumeric characters in Fund Name');
@@ -108,7 +105,7 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
       <div id="track" className={styles['carousel-track']} >
         <Form callback={handleSubmit} ref={formRef} >
           <Step message="Enter fund name and date" >
-            <Input type="text" name="Fund Name" callback={(e) => {validateText(e), handleInputChange(e)}} value={values["Fund Name"]} />
+            <Input type="text" name="Fund Name" callback={(e) => {validateText(e.target.value), handleInputChange(e)}} value={values["Fund Name"]} />
             <Input type="date" name="Date" callback={handleInputChange} value={values["Date"]} />
           </Step>
           <Step  message="Enter ad description and management fees" >
