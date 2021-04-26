@@ -116,7 +116,9 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
     else if (!showForwardButton) { setShowForwardButton(true); }
     else if (!showBackButton) { setShowBackButton(true); }
     if (step !== (formRef.current.scrollWidth - containerRef.current.clientWidth)) { setShowSubmitButton(false); }
-    formRef.current.style.transform = `translateX(-${step}px)`;
+    console.log(step)
+    console.log(`translateX(-${step * 100}%)`)
+    formRef.current.style.transform = `translateX(-${step * 100}%)`;
   }, [step])
 
   return (
@@ -126,13 +128,13 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
           show={showForwardButton}
           id="forward"
           text="Continue"
-          callback={() => { setStep(step + containerRef.current.clientWidth) }}
+          callback={() => { setStep(step + containerRef.current.clientWidth/containerRef.current.clientWidth) }}
         />
         <Button
           show={showBackButton}
           id="backward"
           text="Go Back"
-          callback={() => { setStep(step - containerRef.current.clientWidth) }}
+          callback={() => { setStep(step - containerRef.current.clientWidth/containerRef.current.clientWidth) }}
         />
         <Button type="submit" callback={handleSubmit} text="Submit Information" show={submitButton} id="submit" />
       </div>
