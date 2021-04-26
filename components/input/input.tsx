@@ -6,7 +6,7 @@ interface Props {
   label?: string | undefined,
   type: string,
   name: string,
-  value: string,
+  value?: string,
   src?: string,
   min?: string,
   max?: string,

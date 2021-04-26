@@ -85,7 +85,7 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
       }
       var reader = new FileReader();
       reader.onloadend = function () {
-        const image = reader.result;
+        const image = reader.result.toString();
         setImageFile(image);
         try {
           localStorage.setItem("coolFundTemp", image);
