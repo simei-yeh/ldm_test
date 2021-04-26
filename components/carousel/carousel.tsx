@@ -39,8 +39,6 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
     if (name !== "Fund Type") {
       setValues({ ...values, [name]: value });
     } else {
-      console.log(values[name])
-      console.log(values)
       if (values[name][value]) {
         delete values[name][value];
       } else {
@@ -108,16 +106,15 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
   }, []);
 
   useEffect(() => {
+    let lastPage = formRef.current.scrollWidth/containerRef.current.clientWidth - 1;
     if (step === 0) { setShowBackButton(false); }
-    else if (step === (formRef.current.scrollWidth - containerRef.current.clientWidth)) {
+    else if (step === (lastPage)) {
       setShowForwardButton(false);
       setShowSubmitButton(true);
     }
     else if (!showForwardButton) { setShowForwardButton(true); }
     else if (!showBackButton) { setShowBackButton(true); }
-    if (step !== (formRef.current.scrollWidth - containerRef.current.clientWidth)) { setShowSubmitButton(false); }
-    console.log(step)
-    console.log(`translateX(-${step * 100}%)`)
+    if (step !== (lastPage)) { setShowSubmitButton(false); }
     formRef.current.style.transform = `translateX(-${step * 100}%)`;
   }, [step])
 
