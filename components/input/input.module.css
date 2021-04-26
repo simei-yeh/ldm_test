@@ -11,10 +11,10 @@
   margin: 0 0.5em;
  }
 
- .image {
-   background-color: powderblue;
- }
-
  .range-slider {
    margin-left: 2em;
+ }
+
+ .file {
+  color: transparent;
  }

@@ -18,14 +18,6 @@ interface Submission {
   "Yearly Returns": string
 }
 
-interface RefObject {
-  style: {
-    transform:() => void,
-  }
-  scrollWidth?: number,
-  clientWidth?: number,
-}
-
 interface Props {
   submission: (values: Submission) => void,
 }
@@ -35,20 +27,31 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
   const [step, setStep] = useState(0);
   const [values, setValues] = useState({
     "Fund Name": '', "Date": '', "Description": '', "Management Fees": '',
-    "New Investors": '', "Fund Type": '', "Yearly Returns": '', "File Upload": ''
+    "New Investors": '', "Fund Type": {}, "Yearly Returns": '', "File Upload": ''
   });
   const [showForwardButton, setShowForwardButton] = useState(true);
   const [showBackButton, setShowBackButton] = useState(false);
   const [submitButton, setShowSubmitButton] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
+    if (name !== "Fund Type") {
+      setValues({ ...values, [name]: value });
+    } else {
+      console.log(values[name])
+      console.log(values)
+      if (values[name][value]) {
+        delete values[name][value];
+      } else {
+        values[name][value] = true;
+      }
+    }
     localStorage.setItem('coolFundInformation', JSON.stringify(values));
-    console.log(name, value)
   }
 
-  const validateText = (value) => {
+  const validateText = (e) => {
+    const { value } = e.target;
     var letterNumber = /^[0-9a-zA-Z]+$/;
     if (!value.match(letterNumber)) {
       alert('Please enter only alphanumeric characters in Fund Name');
@@ -67,18 +70,40 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
         return;
       }
     }
+    localStorage.setItem(values["Fund Name"], imageFile);
     localStorage.removeItem('coolFundInformation');
+    localStorage.removeItem("coolFundTemp");
     submission(values);
+  }
+
+  const encodeImageFileAsURL = (e) => {
+    const { files } = e.target;
+    if (files && files[0]) {
+      if (!files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
+        alert('not an image');
+        return;
+      }
+      var reader = new FileReader();
+      reader.onloadend = function () {
+        const image = reader.result;
+        setImageFile(image);
+        try {
+          localStorage.setItem("coolFundTemp", image);
+        }
+        catch (e) {
+          console.log("Storage failed: " + e);
+        }
+      }
+      reader.readAsDataURL(files[0]);
+    }
   }
 
   useEffect(() => {
     const previous = JSON.parse(localStorage.getItem('coolFundInformation'));
-    console.log('check for local storage', previous)
     if (previous) {
       setValues(previous);
-      if (values["Management Fees"]) {
-
-      }
+      const oldImage = localStorage.getItem('coolFundTemp');
+      setImageFile(oldImage);
     }
   }, []);
 
@@ -90,7 +115,7 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
     }
     else if (!showForwardButton) { setShowForwardButton(true); }
     else if (!showBackButton) { setShowBackButton(true); }
-    if (step !== (formRef.current.scrollWidth - containerRef.current.clientWidth)) {setShowSubmitButton(false);}
+    if (step !== (formRef.current.scrollWidth - containerRef.current.clientWidth)) { setShowSubmitButton(false); }
     formRef.current.style.transform = `translateX(-${step}px)`;
   }, [step])
 
@@ -135,7 +160,8 @@ const Carousel: React.FunctionComponent<Props> = ({ submission }) => {
           </Step>
           <Step message="Confirm yearly returns and submit">
             <Input type="range" min="0" max="100" name="Yearly Returns" callback={handleInputChange} value={values["Yearly Returns"]} />
-            <Input type="file" callback={handleInputChange} name="File Upload" value={values["File Upload"]} />
+            <Input type="file" callback={(e) => {encodeImageFileAsURL(e), handleInputChange(e)}} name="File Upload" />
+            <img src={imageFile}></img>
           </Step>
         </Form>
       </div>

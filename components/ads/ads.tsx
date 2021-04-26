@@ -22,7 +22,8 @@ const Ads: React.FunctionComponent<Props> = ({ createdAds }) => {
       {createdAds.map((ad, i) =>
         <div key={i} className={styles["ad"]}>
           {keys.map((k, i) => <span className={styles["ad-content"]}>
-            {`${k}: `}{ad[k]}</span>)}
+            {`${k}: `}{k === "Fund Type" ? JSON.stringify(Object.keys(ad[k])) : ad[k]}</span>)}
+          <img height="100px" width="100px" src={localStorage.getItem(ad["Fund Name"])} />
         </div>)}
     </div>
     )
